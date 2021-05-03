@@ -177,11 +177,19 @@ class VeSyncAir200S(VeSyncBaseDevice):
 
     def turn_on(self) -> bool:
         """Turn Core200S Purifier on."""
-        return self.toggle_switch(True)
+        if self.toggle_switch(True):
+            self.device_status = 'on'
+            return True
+        else:
+            return False
 
     def turn_off(self):
         """Turn Core200S Purifier off."""
-        return self.toggle_switch(False)
+        if self.toggle_switch(False):
+            self.device_status= 'off'
+            return True
+        else:
+            return False
 
     def child_lock_on(self) -> bool:
         """Turn Core200S child lock on."""
